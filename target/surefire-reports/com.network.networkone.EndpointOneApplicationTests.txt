@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.network.networkone.EndpointOneApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.154 s <<< FAILURE! - in com.network.networkone.EndpointOneApplicationTests
+com.network.networkone.EndpointOneApplicationTests  Time elapsed: 0.153 s  <<< ERROR!
+java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+
