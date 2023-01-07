@@ -43,9 +43,10 @@ public class EndpointOneApplication {
 
 	@GetMapping("/user")
 	public String user(
-			@RequestParam(value = "name", defaultValue = "michael") String name,
-			@RequestParam(value = "phone", defaultValue = "123") String phone) {
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) String phone) {
 		User user = new User();
+		if ( name != null && phone != null)
 		user.create(name,phone);
 		return user.fetch();
 	}
