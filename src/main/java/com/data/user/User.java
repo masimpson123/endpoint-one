@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 public class User {
@@ -57,8 +58,8 @@ public class User {
             e.printStackTrace();
          }
          return DriverManager.getConnection(
-            properties.getProperty("DATABASE_PATH"),
-            properties.getProperty("DATABASE_USER"),
-            properties.getProperty("DATABASE_PASSWORD"));
+             System.getenv().get("DATABASE_PATH"),
+             System.getenv().get("DATABASE_USER"),
+             System.getenv().get("DATABASE_PASSWORD"));
     }
 }

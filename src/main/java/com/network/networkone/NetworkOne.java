@@ -6,11 +6,16 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.concurrent.CompletableFuture;
+import com.secret.manager.SecretManager;
 
 public class NetworkOne {
     public String getKey() {
-        return "ae90bbba41d65b1f047a019e0a55de96";
+        try {
+            return new SecretManager().accessSecretVersion();
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
     }
     public String getLong() {
         return "-96.7970";

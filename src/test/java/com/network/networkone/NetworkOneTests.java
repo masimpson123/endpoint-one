@@ -8,7 +8,10 @@ class NetworkOneTests {
     @Test
     void contextLoads() {
         NetworkOne bingo = new NetworkOne();
-        Assertions.assertEquals(bingo.getKey(),"ae90bbba41d65b1f047a019e0a55de96");
+        // getKey
+        // getLong
+        // getLat
+        // fetch
     }
 
 }
