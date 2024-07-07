@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 import com.secret.manager.SecretManager;
 
 public class NetworkOne {
-    public String getKey() {
+    private String getKey() {
         try {
             return new SecretManager().accessSecretVersion();
         } catch (Exception e) {
@@ -17,10 +17,10 @@ public class NetworkOne {
             return "";
         }
     }
-    public String getLong() {
+    private String getLong() {
         return "-96.7970";
     }
-    public String getLat() {
+    private String getLat() {
         return "32.7767";
     }
     public String fetch() throws URISyntaxException, InterruptedException, IOException {

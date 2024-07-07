@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.network.networkone.NetworkOne;
-import com.data.user.User;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,7 +22,8 @@ public class EndpointOneApplication {
 	}
 
 	@GetMapping("/")
-	public String home() {
+	public String home() throws InterruptedException {
+		java.util.concurrent.TimeUnit.SECONDS.sleep(1);
 		return String.format(
 			"Welcome to this <b>Java</b> microservice!<br>" +
 			"This service was created using <b>Spring Initializer</b> and packaged using <b>Maven</b>.<br>" +
@@ -33,25 +33,11 @@ public class EndpointOneApplication {
 		);
 	}
 
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello " + name);
-	}
-
 	@GetMapping("/weather")
 	public String weather() throws URISyntaxException, IOException, InterruptedException {
+		java.util.concurrent.TimeUnit.SECONDS.sleep(1);
 		return "Here is the weather in Texas as fetched from openweathermap using an API key that " +
 			"is securely stored in the GCP secret manager:<br><br>" + new NetworkOne().fetch();
-	}
-
-	@GetMapping("/user")
-	public String user(
-			@RequestParam(required = false) String name,
-			@RequestParam(required = false) String phone) {
-		User user = new User();
-		if ( name != null && phone != null)
-		user.create(name,phone);
-		return user.fetch();
 	}
 
 	@CrossOrigin()

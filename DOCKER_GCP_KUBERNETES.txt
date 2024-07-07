@@ -1,0 +1,149 @@
+Create the image: cd /Users/msimpson/Desktop/endpoint-one
+		 open docker desktop or run the docker daemon some other way
+                  docker build --platform linux/amd64 -t e1 .
+Rune the image: docker run e1
+Upload it to GCP Artifact registry: docker tag e1 us-central1-docker.pkg.dev/endpoint-one/endpoint-one/e1:<mmddyy>
+                                    docker push us-central1-docker.pkg.dev/endpoint-one/endpoint-one/e1:<mmddyy>
+Upload to docker hub: create repository at hub.docker.com
+                      docker tag e1 dockermaster1989/e1:<mmddyy>
+                      docker push dockermaster1989/e1:<mmddyy>
+Create a cluster: kind create cluster --name cluster-<mmddyy>
+Read cluster meta data and logs: kind get clusters
+                                 kubectl cluster-info --context kind-bingo
+                                 kubectl get all
+Run container in kubernetes: cd /Users/livingroom/Desktop/KUBERNETES
+                             kubectl create deployment bingo --image=dockermaster1989/e1:041623 --dry-run=client -o=yaml > deployment.yaml
+                             echo --- >> deployment.yaml
+                             kubectl create service clusterip bingo --tcp=8080:8080 --dry-run -o=yaml >> deployment.yaml
+                             kubectl apply -f deployment.yaml
+                             kubectl port-forward svc/bingo 8080:8080      
+                             Open a new terminal
+                             curl localhost:8080
+
+- - -
+
+kind create cluster --name bingo
+kubectl cluster-info
+kubectl get all
+-
+kubectl create deployment deployment-one --image=dockermaster1989/e2:020523.2
+kubectl get deployments
+-
+cd /Users/msimpson/Desktop/KUBERNETES
+kind create cluster --config=config.yaml --name bingo
+kind load docker-image e1 --name bingo
+kubectl cluster-info --context kind-bingo
+-
+kubectl apply -f deploy.yaml
+-
+kind create cluster --name bingo
+kind get clusters
+kubectl cluster-info --context kind-kind
+kubectl apply -f https://k8s.io/examples/service/access/hello-application.yaml
+kubectl get deployments hello-world
+kubectl describe deployments hello-world
+kubectl get replicasets
+kubectl expose deployment hello-world --type=NodePort --name=example-service
+kubectl describe services example-service
+kubectl get pods --selector="run=load-balancer-example" --output=wide
+-
+kubectl create clusterrolebinding cluster-system-anonymous --clusterrole=cluster-admin --user=system:anonymous
+brew install kind
+
+kubectl get pods
+kubectl logs <pod-name>
+
+- - -
+
+docker build --tag java-docker .
+docker build -t endpoint-one .
+docker tag java-docker:latest java-docker:v1.0.0
+docker images
+docker run java-docker
+docker run --publish 8080:8080 java-docker
+docker run -d -p 8080:8080 java-docker
+docker ps
+docker stop trusting_beaver
+docker run --publish 8080:8080 
+docker run --publish 8080:5002 endpoint-one
+docker run --publish 8080:5002 endpoint-one-5 ./mvnw test
+-
+cat ~/.docker/config.json
+gcloud auth configure-docker us-central1-docker.pkg.dev
+cat /Users/msimpson/Documents/endpoint-one-2a579ca2845a.json | docker login -u _json_key --password-stdin https://us-central1-docker.pkg.dev
+-
+gcloud auth activate-service-account artifact-registry-bot@endpoint-one.iam.gserviceaccount.com --key-file=/Users/msimpson/Documents/endpoint-one-2a579ca2845a.json
+docker tag endpoint-one us-central1-docker.pkg.dev/endpoint-one/endpoint-one/endpoint-one
+docker push us-central1-docker.pkg.dev/endpoint-one/endpoint-one/endpoint-one
+-
+
+I can run an image. I can run a container. What's the difference? Containers are instances of images. I run the image to create a container.
+
+Store Docker container images in Artifact Registry
+https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images
+
+GCloud Auth
+https://cloud.google.com/sdk/gcloud/reference/auth
+
+- - -
+
+ENDPOINT ONE: https://endpoint-one-2-u7qjhl7iia-uc.a.run.app/
+              https://endpoint-one-2-u7qjhl7iia-uc.a.run.app/weather
+              # https://endpoint-one-2-u7qjhl7iia-uc.a.run.app/user
+- - -
+
+spring-boot:run
+
+- - -
+
+https://endpoint-one-2-u7qjhl7iia-uc.a.run.app
+https://endpoint-one-010623-2-u7qjhl7iia-uc.a.run.app
+
+- - -
+
+Great trip! It is good to see Chris.
+
+Check out this Java micro service I developed. It is simple, but it is more an exercise in the use of modern best practices such as Spring, Maven, Docker, and Google Cloud Platform. These are technologies I don't use a ton of at work directly, but I need to understand them because they're an important part of the company's "tech stack". Sometime soon, I'd like to revisit Quinn but as a web application that uses these technologies.
+
+Parental leave is awesome! Wyatt is a super cool baby :) He loves this stuff.
+
+https://endpoint-one-2-u7qjhl7iia-uc.a.run.app/
+https://endpoint-one-2-u7qjhl7iia-uc.a.run.app/weather
+https://endpoint-one-2-u7qjhl7iia-uc.a.run.app/user
+https://endpoint-one-2-u7qjhl7iia-uc.a.run.app/people?crowd=500
+
+- - -
+
+What insights have we gained from combining and analyzing our data?
+Do we have a data warehouse solution?
+Vertex AI Intensive...
+Apigee Intensive...
+Cloud functions Intensive...
+
+- - -
+
+GOOGLE CLOUD IDENTITY
+admin.google.com
+-
+user-one@michaelsimpson.io
+bingo123
+-
+speck@michaelsimpson.io
+Sp3ck123!
+
+- - -
+
+dockermaster1989
++p@nQejt7EQu6t6
+
+- - -
+
+READ IDENTITY FROM SERVICE ACCOUNT JSON KEY USING ENVIRONMENT VARIABLE
+GOOGLE_APPLICATION_CREDENTIALS
+/Users/livingroom/Desktop/KUBERNETES/endpoint-one-service.json
+
+- - -
+
+DATABASE_PATH=jdbc:mysql://35.202.46.226:3306/schema-one;GOOGLE_APPLICATION_CREDENTIALS=/Users/livingroom/Desktop/endpoint-one-service.json;DATABASE_PASSWORD=bingo123;DATABASE_USER=root
+
+- - -
